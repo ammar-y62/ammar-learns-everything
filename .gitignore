@@ -1,0 +1,23 @@
+# Environment variables
+.env
+*.env
+env/
+venv/
+ENV/
+VENV/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Notebook checkpoints
+.ipynb_checkpoints
