@@ -1,6 +1,6 @@
 # ammar-learns-everything
 
-This repo tracks my journey to mastering Data Structures & Algorithms, Data Science, and AI.
+This repo tracks my journey to mastering everything in Software Engineering.
 
 ## 📚 Learning Sections
 
