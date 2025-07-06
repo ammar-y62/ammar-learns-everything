@@ -47,4 +47,38 @@ map1[tuple(value)].append(i)  # group values by tuple key (like sorted chars →
 
 key = tuple(sorted(word))  # sorting ensures all anagrams share the same key
 
+return [item for item, freq in count.most_common(k)]  # most_common gives list sorted by freq
+
+return heapq.nlargest(k, count.keys(), key=count.get) # get the k keys with largest counts using a heap (count.get as sorting key)
+
+for i, n in count.items(): # Example: if count = {'a': 2, 'b': 3}, then first i='a', n=2; then i='b', n=3
+
+res.append(s[i+1:i+1+length])  # adds substring starting after '#' of length `length` to res
+
+res += str(len(i)) + "#" + i    # encodes: adds "<length>#<string>" to the result string
+
+s[j:i]                          # gets substring from index j up to (but not including) i
+
+for i in range(len(nums)-2, -1, -1):  # starts from second-last index, counts down to 0
+    # e.g. if len(nums)=5, then range(3, -1, -1) (start, stop, step)➞ [3, 2, 1, 0]
+    # so i takes values 3,2,1,0
+
+# Iterate over a set
+my_set = {3, 1, 4}
+for x in my_set:
+    print(x)  # prints 3,1,4 in any order
+
+# Iterate over dict keys
+my_map = {"a": 10, "b": 20}
+for k in my_map:
+    print(k)  # prints "a", "b"
+
+# Iterate over dict values
+for v in my_map.values():
+    print(v)  # prints 10, 20
+
+# Iterate over dict key-value pairs
+for k, v in my_map.items():
+    print(k, v)  # prints "a 10", then "b 20"
+
 ```
