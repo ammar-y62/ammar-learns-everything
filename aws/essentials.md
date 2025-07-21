@@ -2495,4 +2495,3 @@ Control **when** to scale. Based on **CloudWatch metrics and alarms**.
 - **Target Tracking**: Keeps a specific metric at a **target value** (e.g. CPU at 60%).
 
 ---
-![Alt text](../assets/images/aws-architecture.png)
