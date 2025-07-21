@@ -128,3 +128,33 @@ while l < r:
     else:
         r -= 1
 ```
+---
+
+## 📚 Stacks (LIFO)
+- Last-In-First-Out structure
+- Use `.append(x)` to push, `.pop()` to remove
+- Often used for undo functionality, balanced parentheses, DFS, etc.
+
+```python
+stack = []
+stack.append(1)  # push
+stack.append(2)
+stack.pop()      # returns 2
+stack[-1]        # peek top element
+```
+
+---
+
+## 📚 Queues (FIFO)
+- First-In-First-Out structure
+- Use `collections.deque` for O(1) enqueue/dequeue
+- Useful for BFS, scheduling, streaming data
+
+```python
+from collections import deque
+queue = deque()
+queue.append(1)     # enqueue
+queue.append(2)
+queue.popleft()     # returns 1
+queue[0]            # peek front element
+```
