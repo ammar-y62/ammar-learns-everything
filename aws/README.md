@@ -36,7 +36,7 @@
 - [ ] Amazon Route 53 (DNS Service)
 - [✅] Amazon CloudFront (Content Delivery Network)
 - [ ] AWS Direct Connect
-- [ ✅ Amazon API Gateway
+- [✅] Amazon API Gateway
 
 ### Security & Identity
 - [✅] AWS IAM (Identity and Access Management)
@@ -83,7 +83,7 @@
 - [ ] AWS CDK (Cloud Development Kit)
 - [ ] Docker and Kubernetes
 - [ ] AWS CloudFormation Templates
-- [ ✅ AWS SAM (Serverless Application Model)
+- [✅] AWS SAM (Serverless Application Model)
 
 ## 📝 Project Ideas
 
@@ -132,12 +132,3 @@
 - [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
 - [AWS Blog](https://aws.amazon.com/blogs/)
 - [AWS YouTube Channel](https://www.youtube.com/user/AmazonWebServices)
-
-## 🎯 Current Focus
-*Add your current learning focus here*
-
-## 📈 Metrics
-- Services Explored: 0
-- Projects Completed: 0
-- Certifications Earned: 0
-- Hours of Practice: 0
