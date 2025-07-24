@@ -3,7 +3,7 @@
 
 ---
 
-## 1️⃣ FizzBuzz
+## FizzBuzz
 
 ### ❓ Problem Summary
 - Given a number `N`, for each integer from `1` to `N`:
@@ -12,7 +12,7 @@
   - Print `"Buzz"` if divisible only by `5`.
   - Otherwise, print the number itself.
 
-### ✅ Solution (Python 2.7)
+### Solution
 ```python
 def funcFizzBuzz(inputNum):
     for i in range(1, inputNum + 1):
@@ -38,9 +38,8 @@ if __name__ == "__main__":
 - Always checks the combined case (`%3==0 and %5==0`) first.
 - **Time Complexity:** `O(N)`.
 
----
 
-## 2️⃣ Longest Palindromic Substring
+## Longest Palindromic Substring
 
 ### ❓ Problem Summary
 - Given a string `S` (only uppercase A-Z).
@@ -48,7 +47,7 @@ if __name__ == "__main__":
 - If multiple with same length, pick the **lexicographically smallest**.
 - If no palindrome longer than `1`, print `"None"`.
 
-### ✅ Solution (Expand Around Center)
+### Solution
 ```python
 def funcSubstring(inputStr):
     n = len(inputStr)
@@ -81,9 +80,8 @@ def funcSubstring(inputStr):
 - Keeps longest, or if tied, smallest lex.
 - **Time Complexity:** `O(N^2)`.
 
----
 
-## 3️⃣ Matrix: Largest in Row & Smallest in Column
+## Matrix: Largest in Row & Smallest in Column
 
 ### ❓ Problem Summary
 - Given a matrix of size `N x M` (non-negative integers).
@@ -92,7 +90,7 @@ def funcSubstring(inputStr):
   - **Smallest in its column**.
 - If no such element exists, print `-1`.
 
-### ✅ Solution (Efficient)
+### Solution
 ```python
 def funcMatrix(matrix):
     n = len(matrix)
@@ -114,20 +112,15 @@ def funcMatrix(matrix):
 - **Time Complexity:** `O(N*M)` — optimal for up to `1000x1000` matrices.
 
 
-# 📓 Coding Notes: HackerRank Problems
-
----
-
-## 🚀 Question 1: Max distinct sums after split
+## Max distinct sums after split
 
 ### 📝 Problem summary
 Given an array `arr`, split it into two non-empty subarrays at some index `i`.
 - Compute the number of **distinct integers** in each subarray.
 - Find the **maximum possible sum** of these counts of distinct integers.
 
----
 
-### 💡 Solution
+### Solution
 Use:
 - A `set` to track distinct elements in the left subarray.
 - A `Counter` to track frequencies in the right subarray.
@@ -136,7 +129,6 @@ Iterate over possible splits, at each step:
 1. Move the current element from right to left.
 2. Compute `len(left) + len(right)` and track the maximum.
 
-#### ✅ Python code
 ```python
 from collections import Counter
 
@@ -154,15 +146,13 @@ def getMaxSum(arr):
     return max_sum
 ```
 
----
 
 ### ⏱️ Complexity analysis
 - **Time:** O(N), each element processed once in left & right structures.
 - **Space:** O(N), for set & counter.
 
----
 
-## 🚀 Question 2: Minimum visibility adjustment cost
+## Minimum visibility adjustment cost
 
 ### 📝 Problem summary
 Given a `n x m` grid `visibilityScore`, each cell has an integer visibility score.
@@ -170,14 +160,12 @@ Given a `n x m` grid `visibilityScore`, each cell has an integer visibility scor
 - You can **increase** scores at a cost of `1` per increment.
 - Find the **minimum total cost** to achieve this.
 
----
 
-### 💡 Solution
+### Solution
 Process each column independently:
 1. For each row (from second down), if `score <= above`, increase it to `above + 1`.
 2. Accumulate total cost.
 
-#### ✅ Python code
 ```python
 def getMinimumCost(visibilityScore):
     n = len(visibilityScore)
@@ -194,10 +182,7 @@ def getMinimumCost(visibilityScore):
     return cost
 ```
 
----
-
 ### ⏱️ Complexity analysis
 - **Time:** O(n * m), processes each cell once.
 - **Space:** O(1) extra, modifies grid in place.
 
----
