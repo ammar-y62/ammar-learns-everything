@@ -26,6 +26,8 @@ for l in range(1, len(word) + 1):  # (substring length), tries all lengths from 
     for start in range(len(word) - l + 1):  # (start index), slides window of length l over word
         # e.g. word = "cab", l = 2 ➞ substrings: "ca", "ab"
 
+num if num != float('inf') else -1  # return num if valid, else -1
+
 for x in arr:
     print(x)
 
@@ -131,9 +133,14 @@ stack[-1]        # peek top element
 
 ```python
 from collections import deque
-queue = deque()
-queue.append(1)     # enqueue
-queue.append(2)
-queue.popleft()     # returns 1
-queue[0]            # peek front element
+d = deque()
+
+d.append(1)      # add to right
+d.appendleft(0)  # add to left
+
+d.pop()          # remove from right ➞ 1
+d.popleft()      # remove from left ➞ 0
+
+d[0]             # peek front (leftmost)
+d[-1]            # peek back (rightmost)
 ```
