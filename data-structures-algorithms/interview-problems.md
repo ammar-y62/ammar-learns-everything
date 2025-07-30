@@ -33,7 +33,7 @@ if __name__ == "__main__":
     main()
 ```
 
-### 📝 Explanation & Analysis
+###  Explanation & Analysis
 - Checks divisibility using modulo `%`.
 - Always checks the combined case (`%3==0 and %5==0`) first.
 - **Time Complexity:** `O(N)`.
@@ -75,7 +75,7 @@ def funcSubstring(inputStr):
     return best_palindrome if best_palindrome != "" else "None"
 ```
 
-### 📝 Explanation & Analysis
+###  Explanation & Analysis
 - Expands around each center (both odd & even) to find palindromes.
 - Keeps longest, or if tied, smallest lex.
 - **Time Complexity:** `O(N^2)`.
@@ -106,7 +106,7 @@ def funcMatrix(matrix):
     return -1
 ```
 
-### 📝 Explanation & Analysis
+###  Explanation & Analysis
 - Precomputes column minimums to reduce repeated work.
 - Checks each cell to see if it’s the row max and col min.
 - **Time Complexity:** `O(N*M)` — optimal for up to `1000x1000` matrices.
@@ -114,7 +114,7 @@ def funcMatrix(matrix):
 
 ## Max distinct sums after split
 
-### 📝 Problem summary
+###  Problem summary
 Given an array `arr`, split it into two non-empty subarrays at some index `i`.
 - Compute the number of **distinct integers** in each subarray.
 - Find the **maximum possible sum** of these counts of distinct integers.
@@ -154,7 +154,7 @@ def getMaxSum(arr):
 
 ## Minimum visibility adjustment cost
 
-### 📝 Problem summary
+###  Problem summary
 Given a `n x m` grid `visibilityScore`, each cell has an integer visibility score.
 - In each **column**, scores must **strictly increase** downward.
 - You can **increase** scores at a cost of `1` per increment.
@@ -186,3 +186,78 @@ def getMinimumCost(visibilityScore):
 - **Time:** O(n * m), processes each cell once.
 - **Space:** O(1) extra, modifies grid in place.
 
+## Handle Non-Fraud Events and Track PII
+
+### Problem Summary
+You're given events with:
+- `event_type`: either `"underwriting"` or `"fraud_flag"`
+- `customer_details`: may contain `phone`, `email`, `address`, `ssn`
+
+Your task is to collect and store **PII values** from **non-fraud events** only.
+
+### Solution
+```python
+class EventProcessor:
+    def __init__(self):
+        self.pii_set = set()
+
+    def handle_event(self, event) -> None:
+        if event['event_type'] != "fraud_flag":
+            self.pii_set.add(event["customer_details"]["phone"])
+
+            if "address" in event['customer_details']:
+                self.pii_set.add(event["customer_details"]["address"])
+            if "email" in event['customer_details']:
+                self.pii_set.add(event["customer_details"]["email"])
+            if "ssn" in event['customer_details']:
+                self.pii_set.add(event["customer_details"]["ssn"])
+```
+
+###  Explanation
+- Ignores `fraud_flag` events completely.
+- Adds all available customer fields safely using `"key" in dict` checks.
+- Fixes the KeyError bug caused by assuming all keys are present.
+
+---
+
+## Track Suspicious Users
+
+### Problem Summary
+You need to:
+- Add PII to a set when the event type is `"fraud_flag"`
+- For `"underwriting"` events:
+  - If any PII is in the suspicious set, the customer is suspicious → call `fraud(event)`
+  - Otherwise, return `0`
+- Always receive the full event in both functions.
+
+### Solution
+```python
+class SuspicionTracker:
+    def __init__(self):
+        self.suspicious_pii = set()
+
+    def fraud(self, event):
+        customer = event["customer_details"]
+        for field in ["phone", "email", "address", "ssn"]:
+            if field in customer:
+                self.suspicious_pii.add(customer[field])
+
+    def is_suspicious(self, event):
+        customer = event["customer_details"]
+
+        if event["event_type"] == "fraud_flag":
+            self.fraud(event)
+            return 1
+
+        elif event["event_type"] == "underwriting":
+            for field in ["phone", "email", "address", "ssn"]:
+                if field in customer and customer[field] in self.suspicious_pii:
+                    self.fraud(event)
+                    return 1
+            return 0
+```
+
+### Explanation
+- Shared `set` stores all flagged PII.
+- If an underwriting event matches any PII → it's suspicious → propagate it via `fraud()`.
+- Logic is simple, extensible, and mimics real-world fraud tracing systems.
