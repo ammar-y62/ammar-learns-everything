@@ -17,3 +17,4 @@
 | 13 | Insert Delete GetRandom O(1)                | Medium     | HashMap, Random, Design| O(1)        | O(n)     | Dict for index + array for values           | [🔗](https://leetcode.com/problems/insert-delete-getrandom-o1) |
 | 14 | Insert Delete GetRandom O(1) – Duplicates   | Hard       | HashMap, Random, Design| O(1)        | O(n)     | Dict of sets + list    | [🔗](https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed) |
 | 15 | Coin Change                                 | Medium     | DP, Bottom-Up          | O(amount·n) | O(amount)| dp[i] = min coins to make amount i     | [🔗](https://leetcode.com/problems/coin-change) |
+| 16 | Number of Recent Calls                                 | Easy     | Deque         | O(1) amortized| O(W)| pop the items out of range     | [🔗](https://leetcode.com/problems/number-of-recent-calls) |

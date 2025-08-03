@@ -23,8 +23,9 @@ for i in range(1, len(word) + 1, 1):  # (start, stop, step), counts up from 1 to
     # e.g. word = "cab", i ➞ 1, 2, 3
 
 for l in range(1, len(word) + 1):  # (substring length), tries all lengths from 1 to full word
-    for start in range(len(word) - l + 1):  # (start index), slides window of length l over word
-        # e.g. word = "cab", l = 2 ➞ substrings: "ca", "ab"
+
+for start in range(len(word) - l + 1):  # (start index), slides window of length l over word
+    # e.g. word = "cab", l = 2 ➞ substrings: "ca", "ab"
 
 num if num != float('inf') else -1  # return num if valid, else -1
 
@@ -130,6 +131,7 @@ stack[-1]        # peek top element
 - First-In-First-Out structure
 - Use `collections.deque` for O(1) enqueue/dequeue
 - Useful for BFS, scheduling, streaming data
+- If each item is added and removed at most once, then the total time is amortized O(1) per operation — even if there’s a loop.
 
 ```python
 from collections import deque
