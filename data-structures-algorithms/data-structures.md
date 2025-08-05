@@ -9,7 +9,6 @@ arr.append(40)  # add to end
 arr.pop()       # remove from end
 arr[-1]         # last index
 random.choice(arr) # random item in array
-
 s[j:i]          # gets substring or sublist from index j up to (but not including) i
 ```
 
@@ -34,6 +33,19 @@ for x in arr:
 
 for i, n in enumerate(arr):
     # i is index, n in value
+```
+General Notes
+```python
+l= r = 0        # faster than l,r = 0, 0
+
+x = float("inf")
+y = float("-inf")
+z = float("nan")
+
+print(x > 1000000)      # True
+print(y < -1000000)     # True
+print(z == z)           # False! (NaN is never equal to itself)
+print(math.isnan(z))    # True
 ```
 ## 🔒 Tuples
 - Immutable, ordered collection (like read-only lists)

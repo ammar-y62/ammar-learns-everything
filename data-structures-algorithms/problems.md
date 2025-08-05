@@ -18,3 +18,8 @@
 | 14 | Insert Delete GetRandom O(1) – Duplicates   | Hard       | HashMap, Random, Design| O(1)        | O(n)     | Dict of sets + list    | [🔗](https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed) |
 | 15 | Coin Change                                 | Medium     | DP, Bottom-Up          | O(amount·n) | O(amount)| dp[i] = min coins to make amount i     | [🔗](https://leetcode.com/problems/coin-change) |
 | 16 | Number of Recent Calls                                 | Easy     | Deque         | O(1) amortized| O(W)| pop the items out of range     | [🔗](https://leetcode.com/problems/number-of-recent-calls) |
+| 17 | Best Time to Buy and Sell Stocks | Easy     | Sliding Window         | O(n) | O(1)| Slide the window     | [🔗](https://neetcode.io/problems/buy-and-sell-crypto?list=blind75) |
+| 18 | Container With Most Water | Medium     |Two Pointer         | O(n) | O(1)| Classic two pointer     | [🔗](https://neetcode.io/problems/max-water-container?list=blind75) |
+| 19 | Longest Substring Without Repeating Characters | Medium | Sliding Window, Set | O(n) | O(n) | Adding unique chars to a set and iterating | [🔗](https://leetcode.com/problems/longest-substring-without-repeating-characters) |
+| 20 | Longest Repeating Character Replacement | Medium | Sliding Window, HashMap | O(n) | O(1) | Shrink window if non-max char count > k, use maxF in ourwindow to help | [🔗](https://leetcode.com/problems/longest-repeating-character-replacement) |
+
