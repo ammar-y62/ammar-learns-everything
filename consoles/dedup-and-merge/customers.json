@@ -1,0 +1,7 @@
+[
+{"id": 1, "name": "Alice Smith", "email": "ALICE@example.com", "phone": " 403-111-2222 "},
+{"id": 2, "name": "Alice S.",     "email": "alice@example.com", "phone": ""},
+{"id": 3, "name": "Bob Ray",      "email": "bob@ex.com",        "phone": "403-999-9999"},
+{"id": 4, "name": "alice smith",  "email": "Alice@Example.com", "phone": "403-111-2222"},
+{"id": 5, "name": "Eve",          "email": "",                  "phone": "403-000-0000"}
+]
