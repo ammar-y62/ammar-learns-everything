@@ -1,9 +1,9 @@
 def main():
-    fileName = "products.txt"
-    process_file(fileName)
+    file_name = "products.txt"
+    process_file(file_name)
 
-def process_file(filename):
-    with open(filename) as f:
+def process_file(file_name):
+    with open(file_name) as f:
         res = "id,name,price\n"
         nameSet = set()
         for i in f.readlines()[1:]:
