@@ -21,7 +21,7 @@ def calculate_spending(json_data):
             price = calculate_price(item)
             customers[customer_id] = price + customers.get(customer_id,0)
 
-    return sorted(customers.items(), key=lambda kv: kv[1], reverse=True)
+    return tuple(sorted(customers.items(), key=lambda kv: kv[1], reverse=True))
 
 def calculate_price(item):
     return item["qty"] * item["price"]
