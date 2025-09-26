@@ -261,3 +261,96 @@ class SuspicionTracker:
 - Shared `set` stores all flagged PII.
 - If an underwriting event matches any PII → it's suspicious → propagate it via `fraud()`.
 - Logic is simple, extensible, and mimics real-world fraud tracing systems.
+## Load Balancer for WebSocket Connections
+
+### ❓ Problem Summary
+- Multiple Jupyter servers need to handle WebSocket connections.
+- Each connection has `connectionId`, `userId`, `objectId`.
+- Rules:
+  - Same `objectId` must always connect to the same server.
+  - Each server has a `maxConnectionsPerTarget`.
+  - `"DISCONNECT"` removes connections.
+  - `"SHUTDOWN"` re‑routes evicted connections in ascending `connectionId` order.
+- Return log lines: `connectionId,userId,targetIndex` (1‑based).
+
+### Solution
+```python
+def route_requests(numTargets, maxConnectionsPerTarget, requests):
+    active_count = [0] * numTargets
+    target_conn = [set() for _ in range(numTargets)]
+    conn_info = {}
+    object_target = {}
+    object_count = {}
+    log = []
+
+    def disconnect(cid):
+        user, obj, tgt = conn_info.pop(cid)
+        active_count[tgt] -= 1
+        target_conn[tgt].remove(cid)
+        object_count[obj] -= 1
+        if object_count[obj] == 0:
+            del object_target[obj]
+            del object_count[obj]
+
+    def best_target(exclude=None):
+        best = None
+        for i in range(numTargets):
+            if i == exclude or active_count[i] >= maxConnectionsPerTarget:
+                continue
+            if best is None or active_count[i] < active_count[best]:
+                best = i
+        return best
+
+    for req in requests:
+        parts = req.split(',')
+        action = parts[0]
+        if action == "CONNECT":
+            cid, user, obj = parts[1], parts[2], parts[3]
+            tgt = object_target.get(obj)
+            if tgt is not None and active_count[tgt] < maxConnectionsPerTarget:
+                pass
+            else:
+                tgt = best_target()
+            if tgt is None:
+                continue
+            conn_info[cid] = (user, obj, tgt)
+            object_target[obj] = tgt
+            object_count[obj] = object_count.get(obj, 0) + 1
+            active_count[tgt] += 1
+            target_conn[tgt].add(cid)
+            log.append(f"{cid},{user},{tgt + 1}")
+        elif action == "DISCONNECT":
+            cid = parts[1]
+            if cid in conn_info:
+                disconnect(cid)
+        elif action == "SHUTDOWN":
+            tgt = int(parts[1]) - 1
+            evicted = sorted(target_conn[tgt])
+            for cid in evicted:
+                disconnect(cid)
+            for cid in evicted:
+                if cid in conn_info:
+                    user, obj, _ = conn_info[cid]
+                    tgt_new = object_target.get(obj)
+                    if tgt_new is not None and active_count[tgt_new] < maxConnectionsPerTarget:
+                        pass
+                    else:
+                        tgt_new = best_target(exclude=tgt)
+                    if tgt_new is None:
+                        continue
+                    conn_info[cid] = (user, obj, tgt_new)
+                    object_target[obj] = tgt_new
+                    object_count[obj] = object_count.get(obj, 0) + 1
+                    active_count[tgt_new] += 1
+                    target_conn[tgt_new].add(cid)
+                    log.append(f"{cid},{user},{tgt_new + 1}")
+    return log
+```
+
+### Explanation & Analysis
+- Tracks load per server, object affinity, and active connections.
+- `"CONNECT"`: reuse mapped server if possible, else least‑loaded.
+- `"DISCONNECT"`: frees slot and updates mappings.
+- `"SHUTDOWN"`: removes all connections, then re‑routes them orderly.
+- **Time Complexity:** `O(numTargets)` per operation in worst case.
+
