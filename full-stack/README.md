@@ -9,8 +9,8 @@ Weekly takeaways from mentor sessions.
 
 ## Backend & APIs
 - [API design: idempotency, validation, error responses](./api-design.md)
-- [Service layer vs repository pattern](./backend-service-vs-repository.md)
 - [Repo vs service vs controller](./backend-layers.md)
+- [Layered, onion, hexagonal, clean](./backend-architecture-styles.md)
 
 ## Databases
 - [Transactions, indexes, types, N+1 queries, race conditions](./databases.md)
